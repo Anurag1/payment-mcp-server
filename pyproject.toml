@@ -9,7 +9,9 @@ dependencies = [
     "mcp[cli]>=1.7.0",
     "requests",
     "pycryptodome",
-    "paytmchecksum"
+    "paytmchecksum",
+    "pyjwt",
+    "uuid>=1.30",
 ]
 
 [project.scripts]

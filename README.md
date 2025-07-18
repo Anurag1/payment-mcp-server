@@ -12,17 +12,84 @@ Paytm MCP Server enables AI agents and developers to securely access Paytm's Pay
 
 - **Agentic AI Payments**: Enable agentic AI payments, build enhanced bot led shopping experience through Paytm MCP server
 
+## Deployment Options
+
+This MCP server can be used in **two modes**:
+
+1.  **Remote MCP (Recommended)** - Hosted by Paytm with zero setup
+2.  **Local MCP** - Run and test tools on your local machine
+
 ## Tools
 
-| Tool                | Description                          | API                                                                                                         |
-| ------------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| `create_link`       | Create a new payment link            | [Create Link API](https://www.paytmpayments.com/docs/api/create-link-api?ref=paymentLinks)                  |
-| `fetch_link`        | Fetch details of a payment link      | [Fetch Link API](https://www.paytmpayments.com/docs/api/fetch-link-api?ref=paymentLinks)                    |
-| `fetch_transaction` | Fetch transaction details for a link | [Fetch Transaction API](https://www.paytmpayments.com/docs/api/fetch-transaction-link-api?ref=paymentLinks) |
-| `fetch_order_list`  | Fetch a list of orders within a date range of 30 days | [Order List API](https://www.paytmpayments.com/docs/api/order-list-api) |
-| `initiate_refund`   | Initiate a refund for a specific transaction | [Initiate Refund API](https://www.paytmpayments.com/docs/api/initiate-refund-api) |
-| `check_refund_status` | Check status of a previously initiated refund | [Check refund status API](https://www.paytmpayments.com/docs/api/check-refund-status-api) |
-| `fetch_refund_list` | Fetch a list of refunds within a date range of 30 days | [Fetch Refund List API](https://www.paytmpayments.com/docs/api/fetch-refund-list-api) |
+| Tool                                 | Description                                                                                                                      | API                                                                                                                               |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `create_link`                        | Create a new payment link                                                                                                        | [Create Link API](https://www.paytmpayments.com/docs/api/create-link-api?ref=paymentLinks)                                        |
+| `fetch_link`                         | Fetch details of a payment link                                                                                                  | [Fetch Link API](https://www.paytmpayments.com/docs/api/fetch-link-api?ref=paymentLinks)                                          |
+| `fetch_transaction`                  | Fetch transaction details for a link                                                                                             | [Fetch Transaction API](https://www.paytmpayments.com/docs/api/fetch-transaction-link-api?ref=paymentLinks)                       |
+| `fetch_order_list`                   | Fetch a list of orders within a date range of 30 days                                                                            | [Order List API](https://www.paytmpayments.com/docs/api/order-list-api)                                                           |
+| `initiate_refund`                    | Initiate a refund for a specific transaction                                                                                     | [Initiate Refund API](https://www.paytmpayments.com/docs/api/initiate-refund-api)                                                 |
+| `check_refund_status`                | Check status of a previously initiated refund                                                                                    | [Check refund status API](https://www.paytmpayments.com/docs/api/check-refund-status-api)                                         |
+| `fetch_refund_list`                  | Fetch a list of refunds within a date range of 30 days                                                                           | [Fetch Refund List API](https://www.paytmpayments.com/docs/api/fetch-refund-list-api)                                             |
+| `get_settlement_summary`             | Retrieves the overall summary details of a payout corresponding to a single date, a date range, or a payout ID                   | [Get Settlement Summary API](https://www.paytmpayments.com/docs/api/settlement-summary-api?ref=settlement)                        |
+| `get_settlement_detail`              | Retrieves a detailed or transactional view of all settled transactions at the payout level, based on a date range or a payout ID | [Get Settlement details API](https://www.paytmpayments.com/docs/api/settlement-detail-api?ref=settlement)                         |
+| `get_settlement_order_details`       | Retrieves settlement details at an order level, based on a specified payout date and order ID                                    | [Get Settlement Order Details API](https://www.paytmpayments.com/docs/api/settlement-order-detail-api?ref=settlement)             |
+| `get_settlement_transaction_details` | Retrieves settlement details of an order based on a transaction ID                                                               | [Get Settlement Transaction Details API](https://www.paytmpayments.com/docs/api/settlement-transaction-detail-api?ref=settlement) |
+
+# **Remote MCP (Recommended)**
+
+Use this mode to connect directly to Paytm's hosted MCP instance without setting up your own server.
+**Step 1: Request Access**
+To onboard onto Remote MCP, please **drop an email to**: mcp-support@paytm.com
+In your request, include your intent to connect to Remote MCP. In response, you will receive:
+
+- **Client ID**
+- **Secret Key**
+
+You will also need your **Merchant ID**, which you can retrieve from the [Paytm Merchant](https://www.paytmpayments.com//docs/getting-started) dashboard.
+
+**For Cursor**
+**1. Download the Helper Script**
+Get the generate_mcp_token_cursor.sh file from this repository.
+**2. Edit the Script**
+Open it in a text editor and modify the variables as follows:
+
+- SECRET_KEY: Use the **Secret Key** received via email
+- USERNAME: Use the **Client ID** received via email
+- MERCHANT_ID: Use your **existing Paytm Merchant ID**
+
+**3. Make the Script Executable**
+In your terminal, run:
+chmod +x generate_mcp_token_cursor.sh
+**4. Run the Script**
+sh generate_mcp_token_cursor.sh
+This will output a valid Authorization Token (JWT).
+
+**5. Configure MCP in Cursor**
+Open your MCP settings inside Cursor and paste the following config:
+
+json
+
+Inside your cursor settings in MCP, add this config.
+
+```bash
+   {
+      "mcpServers": {
+         "Paytm MCP Server": {
+            "url": "https://paytm-mcp.pg2prod.paytm.com/sse/",
+            "headers": {
+            "client-id": "<Client ID>",
+            "Authorization": "Bearer <Authorization Token>"
+            }
+         }
+      }
+   }
+```
+
+Make sure to replace <Your Client ID> and <Your JWT Token> with actual values.
+
+# **Local MCP (Self-Hosted)**
+
+If you'd prefer to run the MCP server locally (for testing or sandbox development), follow the instructions below.
 
 ## Prerequisites
 
