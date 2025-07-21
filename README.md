@@ -1,6 +1,6 @@
 # Paytm MCP Server
 
-Paytm MCP Server enables AI agents and developers to securely access Paytm's Payments and Business Payments APIs via the Model Context Protocol (MCP). It allows smart, contextual automation across all payment workflows
+Paytm MCP Server enables AI agents and developers to securely access Paytm's Payments and Business Payments [APIs](https://www.paytmpayments.com/docs) via the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction). It allows smart, contextual automation across all payment workflows
 
 ## Features
 
@@ -38,8 +38,11 @@ This MCP server can be used in **two modes**:
 # **Remote MCP (Recommended)**
 
 Use this mode to connect directly to Paytm's hosted MCP instance without setting up your own server.
+
 **Step 1: Request Access**
+
 To onboard onto Remote MCP, please **drop an email to**: mcp-support@paytm.com
+
 In your request, include your intent to connect to Remote MCP. In response, you will receive:
 
 - **Client ID**
@@ -48,9 +51,13 @@ In your request, include your intent to connect to Remote MCP. In response, you 
 You will also need your **Merchant ID**, which you can retrieve from the [Paytm Merchant](https://www.paytmpayments.com//docs/getting-started) dashboard.
 
 **For Cursor**
+
 **1. Download the Helper Script**
+
 Get the generate_mcp_token_cursor.sh file from this repository.
+
 **2. Edit the Script**
+
 Open it in a text editor and modify the variables as follows:
 
 - SECRET_KEY: Use the **Secret Key** received via email
@@ -58,13 +65,23 @@ Open it in a text editor and modify the variables as follows:
 - MERCHANT_ID: Use your **existing Paytm Merchant ID**
 
 **3. Make the Script Executable**
+
 In your terminal, run:
-chmod +x generate_mcp_token_cursor.sh
+
+```bash
+   chmod +x generate_mcp_token_cursor.sh
+```
+
 **4. Run the Script**
-sh generate_mcp_token_cursor.sh
+
+```bash
+   sh generate_mcp_token_cursor.sh
+```
+
 This will output a valid Authorization Token (JWT).
 
 **5. Configure MCP in Cursor**
+
 Open your MCP settings inside Cursor and paste the following config:
 
 json
