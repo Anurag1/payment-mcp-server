@@ -41,7 +41,7 @@ Use this mode to connect directly to Paytm's hosted MCP instance without setting
 
 **Step 1: Request Access**
 
-To onboard onto Remote MCP, please **drop an email to**: mcp-support@paytm.com
+To onboard onto Remote MCP, please **drop an email to**: devsupport@paytmpayments.com
 
 In your request, include your intent to connect to Remote MCP. In response, you will receive:
 
@@ -58,11 +58,13 @@ Get the generate_mcp_token_cursor.sh file from this repository.
 
 **2. Edit the Script**
 
-Open it in a text editor and modify the variables as follows:
+Open the downloaded generate_mcp_token_cursor.sh file in a text editor and modify the below variables as follows:
 
-- SECRET_KEY: Use the **Secret Key** received via email
-- USERNAME: Use the **Client ID** received via email
-- MERCHANT_ID: Use your **existing Paytm Merchant ID**
+- SECRET_KEY (line 36) : Use the **Secret Key** received via email
+- USERNAME (line 39) : Use the **Client ID** received via email
+- MERCHANT_ID (line 40) : Use your **existing Paytm Merchant ID**
+
+![MCP Configuration Example](images/image.png)
 
 **3. Make the Script Executable**
 
