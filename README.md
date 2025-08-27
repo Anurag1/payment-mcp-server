@@ -64,11 +64,11 @@ Open the downloaded generate_mcp_token_cursor.sh file in a text editor and modif
 - USERNAME (line 39) : Use the **Client ID** received via email
 - MERCHANT_ID (line 40) : Use your **existing Paytm Merchant ID**
 
-![MCP Configuration Example](images/image.png)
+![MCP Configuration Example](images/image1.png)
 
 **3. Make the Script Executable**
 
-In your terminal, run:
+Open terminal/command prompt and navigate to the folder where the file generate_mcp_token_cursor.sh is downloaded.  The run the below program.
 
 ```bash
    chmod +x generate_mcp_token_cursor.sh
@@ -76,19 +76,31 @@ In your terminal, run:
 
 **4. Run the Script**
 
+Now run the below command to generate a token.
+
 ```bash
    sh generate_mcp_token_cursor.sh
 ```
 
 This will output a valid Authorization Token (JWT).
 
+![MCP Configuration Example](images/image2.png)
+
 **5. Configure MCP in Cursor**
 
-Open your MCP settings inside Cursor and paste the following config:
+a. Go to cursor, ensure its updated to the latest version which supports Remote MCP ( Click on Cursor → check for updates and update to the latest version)
 
-json
+b. Click on settings icon on the top right ( as shown in screenshot below)
 
-Inside your cursor settings in MCP, add this config.
+![MCP Configuration Example](images/image3.png)
+
+c. Go to Tools and integrations tab once inside the settings.
+
+d. Click on New MCP Server Tab
+
+e. Copy paste the below config json inside
+
+Inside your cursor settings in MCP, add this config. Make sure to replace <Your Client ID> and <Your JWT Token> with actual values obtained from previous step.
 
 ```bash
    {
@@ -103,8 +115,19 @@ Inside your cursor settings in MCP, add this config.
       }
    }
 ```
+Sample Screenshot:
 
-Make sure to replace <Your Client ID> and <Your JWT Token> with actual values.
+![MCP Configuration Example](images/image4.png)
+
+f. Once this is done, go back to Cursor settings (inside the Tools & Integrations tab) . You should see green indicator next to Paytm MCP server - this indicates connection to Paytm MCP Server is successful.
+
+![MCP Configuration Example](images/image5.png)
+
+g. Now click on "Toggle AI Panel" on the top right to open a new chat 
+
+![MCP Configuration Example](images/image6.png)
+
+h. Now you are all set to interact with Paytm MCP Server. You can start asking questions such as "Create Payment Link", "Show me last 10 transactions" etc.
 
 # **Local MCP (Self-Hosted)**
 
